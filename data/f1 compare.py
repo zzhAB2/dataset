@@ -19,7 +19,7 @@ y_bwdgv = np.array([0,0
 ,86.8
 ,86.3
 ,86.9
-,87.2  ])  # 训练准确率值，即y轴
+,87.2  ])  
 y_prgc=np.array([0
 ,39.8
 ,63.7
@@ -86,11 +86,11 @@ y_OneRel=np.array([
 ,82.0
 ,82.5
 ])
-x_train_acc = np.array([i for i in range(1,21)]) # 训练阶段准确率的数量，即x轴
+x_train_acc = np.array([i for i in range(1,21)]) 
 
 plt.figure()
-plt.xlabel('epochs')  # x轴标签
-plt.ylabel('F1-score')  # y轴标签
+plt.xlabel('epochs')  
+plt.ylabel('F1-score')  
 
 
 def smooth_curve(points, factor=0.3):
@@ -98,16 +98,15 @@ def smooth_curve(points, factor=0.3):
     for point in points:
         if smoothed_points:
             previous = smoothed_points[-1]
-            # 上一个节点*0.8+当前节点*0.2
+       
             smoothed_points.append(previous * factor + point * (1 - factor))
         else:
-            # 添加point
+ 
             smoothed_points.append(point)
     return smoothed_points
 
 
-# 以x_train_acc为横坐标，y_train_acc为纵坐标，曲线宽度为1，实线，增加标签，训练损失，
-# 增加参数color='red',这是红色。
+
 plt.plot(x_train_acc, smooth_curve(y_bwdgv), color='red', linewidth=0.5, linestyle="solid", label="Bwdgv")
 plt.plot(x_train_acc, smooth_curve(y_prgc), color='blue', linewidth=0.5, linestyle="solid", label="PRGC")
 plt.plot(x_train_acc, smooth_curve(y_CasRel), color='green', linewidth=0.5, linestyle="solid", label="CasRel")
